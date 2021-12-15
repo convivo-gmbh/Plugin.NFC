@@ -160,6 +160,8 @@ namespace Plugin.NFC
 					   new DebugInfo("Can't connect to tag!", error.DebugDescription, _tag.Type.ToString(), tags.Length, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
 					   );
 
+					// error code 2 represents missing entitlement
+					connectionError = error.Code == 2 ? Configuration.Messages.NFCMissingEntitlement : connectionError;
 					Invalidate(session, connectionError);
 					return;
 				}
