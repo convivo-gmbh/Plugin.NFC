@@ -207,6 +207,8 @@ namespace Plugin.NFC
 						// let the user decide if ndef support is needed
 						OnMessageReceived?.Invoke(nTag);
 
+						session.AlertMessage = Configuration.Messages.NFCSuccessRead;
+
 						Invalidate(session);
 
 						return;
