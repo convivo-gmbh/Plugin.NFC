@@ -1,5 +1,5 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
-
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
     <!--Work around so the conditions work below-->
     <TargetFrameworks>netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;MonoAndroid90;MonoAndroid10.0;</TargetFrameworks>
@@ -11,72 +11,57 @@
     <AssemblyName>Plugin.NFC</AssemblyName>
     <RootNamespace>Plugin.NFC</RootNamespace>
     <PackageId>Plugin.NFC</PackageId>
-    
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
     <Version>1.0.0.0</Version>
-    <PackageVersion>0.1.19.3</PackageVersion>
+    <PackageVersion>0.1.19.4</PackageVersion>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <DefineConstants>$(DefineConstants);</DefineConstants>
-    
     <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <LangVersion>latest</LangVersion>
-		<DebugType>portable</DebugType>
-
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <DebugType>portable</DebugType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/convivo-gmbh/Plugin.NFC</PackageProjectUrl>
     <RepositoryUrl>https://github.com/convivo-gmbh/Plugin.NFC</RepositoryUrl>
     <PackageReleaseNotes>https://github.com/convivo-gmbh/Plugin.NFC/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <PackageIconUrl>https://github.com/convivo-gmbh/Plugin.NFC/raw/master/art/nfc128.png</PackageIconUrl>
-		<PackageIcon>icon.png</PackageIcon>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>xamarin, ios, android, xamarin.forms, plugin, NFC</PackageTags>
-    
     <Title>NFC Plugin for Xamarin</Title>
     <Summary>A Cross-Platform plugin to easily read and write NFC tags.</Summary>
     <Description>Cross-Platform NFC (Near Field Communication) plugin to easily read and write NFC tags in your application.</Description>
-    
     <Owners>convivo-gmbh</Owners>
     <Authors>Convivo</Authors>
     <Copyright>Copyright 2020</Copyright>
-
-		<!--When built in 2019 will remove extra references on pack for iOS in System.Drawing.Common-->
-		<DisableExtraReferences>false</DisableExtraReferences>
-		
+    <!--When built in 2019 will remove extra references on pack for iOS in System.Drawing.Common-->
+    <DisableExtraReferences>false</DisableExtraReferences>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
-	
   <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-		
-		<!-- sourcelink: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<!-- sourcelink: Embed source files that are not tracked by the source control manager in the PDB -->
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<!-- sourcelink: Include PDB in the built .nupkg -->
-		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-		
+    <!-- sourcelink: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- sourcelink: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- sourcelink: Include PDB in the built .nupkg -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
-
-	<ItemGroup Condition=" '$(Configuration)'=='Release' ">
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-	</ItemGroup>
-	
+  <ItemGroup Condition=" '$(Configuration)'=='Release' ">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
   <ItemGroup>
-		<None Include="..\..\art\nfc128.png" PackagePath="icon.png" Pack="true" />
+    <None Include="..\..\art\nfc128.png" PackagePath="icon.png" Pack="true" />
     <Compile Include="**\*.shared.cs" />
   </ItemGroup>
-
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
   </ItemGroup>
-
   <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
     <Compile Include="**\*.uwp.cs" />
     <!--
@@ -86,21 +71,20 @@
     </SDKReference>
     -->
   </ItemGroup>
-
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <Compile Include="**\*.android.cs" />
   </ItemGroup>
-
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Compile Include="**\*.iOS.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Shared\IDebugInfo.shared.cs">
-      <SubType></SubType>
+      <SubType>
+      </SubType>
     </Compile>
     <Compile Update="Shared\DebugInfo.shared.cs">
-      <SubType></SubType>
+      <SubType>
+      </SubType>
     </Compile>
   </ItemGroup>
 </Project>

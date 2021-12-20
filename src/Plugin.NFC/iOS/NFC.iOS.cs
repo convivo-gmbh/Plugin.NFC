@@ -157,7 +157,7 @@ namespace Plugin.NFC
 					connectionError = error.LocalizedDescription;
 
 					OnError?.Invoke(
-					   new DebugInfo("Can't connect to tag!", error.DebugDescription, _tag.Type.ToString(), tags.Length, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
+					   new DebugInfo("Can't connect to tag!", error.DebugDescription, _tag?.Type.ToString(), tags.Length, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
 					   );
 
 					Invalidate(session, connectionError);
@@ -169,7 +169,7 @@ namespace Plugin.NFC
 				if (ndefTag == null)
 				{
 					OnError?.Invoke(
-						new DebugInfo("Can't get ndef tag!", Configuration.Messages.NFCErrorNotCompliantTag, _tag.Type.ToString(), tags.Length)
+						new DebugInfo("Can't get ndef tag!", Configuration.Messages.NFCErrorNotCompliantTag, _tag?.Type.ToString(), tags.Length)
 						);
 
 					Invalidate(session, Configuration.Messages.NFCErrorNotCompliantTag);
@@ -182,7 +182,7 @@ namespace Plugin.NFC
 					if (error != null)
 					{
 						OnError?.Invoke(
-							new DebugInfo("Can't query ndef status!", error.DebugDescription, _tag.Type.ToString(), tags.Length, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
+							new DebugInfo("Can't query ndef status!", error.DebugDescription, _tag?.Type.ToString(), tags.Length, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
 							);
 
 						Invalidate(session, error.LocalizedDescription);
@@ -226,7 +226,7 @@ namespace Plugin.NFC
 							if (error != null && error.Code != 403)
 							{
 								OnError?.Invoke(
-									new DebugInfo("Error while reading tag!", error.DebugDescription, _tag.Type.ToString(), tags.Length, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
+									new DebugInfo("Error while reading tag!", error.DebugDescription, _tag?.Type.ToString(), tags.Length, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
 									);
 
 								Invalidate(session, Configuration.Messages.NFCErrorRead);
@@ -261,7 +261,7 @@ namespace Plugin.NFC
 			if (readerError != NFCReaderError.ReaderSessionInvalidationErrorFirstNDEFTagRead && readerError != NFCReaderError.ReaderSessionInvalidationErrorUserCanceled)
 			{
 				OnError?.Invoke(
-					new DebugInfo("Error during detection!", error.DebugDescription, _tag.Type.ToString(), 0, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
+					new DebugInfo("Error during detection!", error.DebugDescription, _tag?.Type.ToString(), 0, error.Code.ToString(), ((NFCReaderError)(long)error.Code).ToString())
 					);
 			}
 
