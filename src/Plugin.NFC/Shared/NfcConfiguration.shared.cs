@@ -48,6 +48,7 @@
 		string _nfcSuccessRead = "Read Operation Successful";
 		string _nfcSuccessWrite = "Write Operation Successful";
 		string _nfcSuccessClear = "Clear Operation Successful";
+		string _nfcMissingEntitlement = "Missing required entitlement";
 
 		/// <summary>
 		/// Writing feature not supported
@@ -230,5 +231,19 @@
 					_nfcSuccessClear = value;
 			}
 		}
+		
+		/// <summary>
+		/// [iOS] Error message for a missing required entitlement.
+		/// </summary>
+		public string NFCMissingEntitlement
+		{
+			get => _nfcMissingEntitlement;
+			set
+			{
+				if (!string.IsNullOrWhiteSpace(value))
+					_nfcMissingEntitlement = value;
+			}
+		}
+		
 	}
 }
